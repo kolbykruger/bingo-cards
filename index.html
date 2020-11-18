@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Cards</title>
+
+    <link rel="stylesheet" href="bundle.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="page">
+
+        <div id="app">
+
+            <div class="bingo-game">
+                <div class="app-columns cards">
+                    <div class="card-group card-group-one">
+                        <button class="card-item" v-for="(item, index) in wordList" :key="item" @click="clickCard">
+                            {{ item }}
+                            <span>{{ wordsLeft ? wordsLeft : ''}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-columns fields" v-if="stage === '1'">
+                <div class="field">
+                    <label for="inputOne">Word List</label>
+                    <textarea name="" id="wordList" v-model="wordInput" cols="30" rows="10" v-on:keyup="updateCards"></textarea>
+                    <div class="buttons">
+                        <button class="button -secondary" @click="createGameLink">Create Game</button>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="game-link" v-if="gameLink != ''">
+                        <label for="gameLink">Game Link</label>
+                        <input type="text" id="gameLink" v-model="gameLink" @click="inputSelection">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="scripts.js"></script>
+
+</body>
+</html>
